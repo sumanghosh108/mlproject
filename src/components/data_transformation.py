@@ -37,19 +37,19 @@ class DataTransformation:
             num_pipeline=Pipeline(
                 steps=[
                     ("imputer",SimpleImputer(strategy="median")),
-                    ("scaler",StandardScaler())
+                    ("scaler",StandardScaler(with_mean=False))
                 ]
             )
             cat_pipeline=Pipeline(
                 steps=[
                     ("imputer",SimpleImputer(strategy="most_frequent")),
-                    ("one_hot_encoder",OneHotEncoder()),
-                    ("scaler",StandardScaler())
+                    ("one_hot_encoder",OneHotEncoder(handle_unknown="ignore")),
+                    # ("scaler",StandardScaler())
                 ]
             )
             
-            logging.info("Numerical columns: {categorical_columns}")
-            logging.info("Categorical columns: {numerical_columns}")
+            logging.info(f"Numerical columns: {categorical_columns}")
+            logging.info(f"Categorical columns: {numerical_columns}")
             # logging.info("Numerical columns scaling completed")
             # logging.info("Categorical columns encoding completed")
             
